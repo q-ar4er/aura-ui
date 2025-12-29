@@ -1,0 +1,40 @@
+import { Meta, Title, Subtitle } from '@storybook/addon-docs/blocks'
+
+<Meta title="Docs/Guidelines" />
+
+<Title>Guidelines</Title>
+<Subtitle>Do / Don't</Subtitle>
+
+These rules help keep the UI consistent across multiple independent products.
+
+## Components
+
+### ✅ Do
+
+- Use Aura components for common controls (buttons/inputs/selects) to keep UX consistent.
+- Prefer props/slots over custom CSS for variations.
+- Keep component API **stable** (rename/remove in MAJOR releases only).
+
+### ❌ Don't
+
+- Copy components into products “just to tweak one thing”. Add a prop/variant instead.
+- Add product-specific business logic into the UI-kit.
+- Hardcode text strings inside components that should be localized at the app level.
+
+## Tokens
+
+### ✅ Do
+
+- Add new tokens before introducing new visual patterns.
+- Keep tokens semantic (`--text`, `--panel`) and stable.
+
+### ❌ Don't
+
+- Rename/remove tokens casually.
+- Introduce implementation-driven tokens (`--blue-500`) as the primary API.
+
+## Accessibility basics
+
+- Maintain text/background contrast.
+- Ensure focus states are visible (`--ring`, `--field-border-focus`).
+- Provide disabled and loading states.
