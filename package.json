@@ -27,7 +27,7 @@
     }
   },
   "scripts": {
-    "build": "rm -rf dist && vite build && vue-tsc -p tsconfig.build.json",
+    "build": "rm -rf dist && vite build && node scripts/emit-style.mjs && vue-tsc -p tsconfig.build.json",
     "prepare": "npm run build",
     "type-check": "vue-tsc --noEmit -p tsconfig.app.json",
     "lint": "eslint . --fix",
