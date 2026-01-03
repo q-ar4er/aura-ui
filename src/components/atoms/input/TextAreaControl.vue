@@ -17,7 +17,7 @@ import { computed, ref } from 'vue'
 import { cn } from '@/utils/cn'
 
 defineOptions({
-  name: 'NeoTextAreaControl',
+  name: 'AuraTextAreaControl',
   inheritAttrs: false,
 })
 

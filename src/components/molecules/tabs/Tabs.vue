@@ -24,8 +24,7 @@
 </template>
 
 <script lang="ts" setup>
-defineOptions({
-  name: 'NeoTabs',
+defineOptions({ name: 'AuraTabs',
 })
 import { computed, type PropType } from 'vue'
 import { Motion } from '@motionone/vue'

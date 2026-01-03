@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import NeoProgressRadial from '@/components/atoms/progress/ProgressRadial.vue'
+import AuraProgressRadial from '@/components/atoms/progress/ProgressRadial.vue'
 
 const props = withDefaults(
   defineProps<{
@@ -18,5 +18,5 @@ const props = withDefaults(
 </script>
 
 <template>
-  <NeoProgressRadial :value="value" :size="size" :show-label="showLabel" />
+  <AuraProgressRadial :value="value" :size="size" :show-label="showLabel" />
 </template>

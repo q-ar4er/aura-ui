@@ -31,7 +31,7 @@ export const globalTypes = {
     },
   },
   neo: {
-    name: 'Neo Shadows',
+    name: 'Aura Shadows',
     description: 'Enable/disable neomorphic shadows',
     defaultValue: 'true',
     toolbar: {

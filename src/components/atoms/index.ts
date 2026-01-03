@@ -1,4 +1,4 @@
-// Neo UI-kit atoms (primitives)
+// Aura UI-kit atoms (primitives)
 export * from './badge'
 export * from './button'
 export * from './card'

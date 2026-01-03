@@ -9,7 +9,7 @@ This changelog tracks **Aura UI package** releases.
 
 - Initial extraction from template into a reusable UI-kit
 - Library build (Vite lib mode) with generated `.d.ts`
-- Exported components namespace: `Aura*` (with legacy `Neo*` aliases in codebase)
+- Exported components namespace: `Aura*`
 - Global styles: `aura-ui/style.css`
 - Theme helpers: `applyAuraTheme`, `persistAuraTheme`, `initAuraTheme`
 - Tailwind preset export: `aura-ui/tailwind-preset`

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import NeoCardSurface from '@/components/atoms/card/CardSurface.vue'
+import AuraCardSurface from '@/components/atoms/card/CardSurface.vue'
 
 withDefaults(
   defineProps<{
@@ -13,7 +13,7 @@ withDefaults(
 </script>
 
 <template>
-  <NeoCardSurface class="w-full p-6">
+  <AuraCardSurface class="w-full p-6">
     <div class="mb-4">
       <div class="text-xl font-semibold">{{ title }}</div>
       <div v-if="description" class="text-sm opacity-70 mt-1">{{ description }}</div>
@@ -21,5 +21,5 @@ withDefaults(
     <div>
       <slot />
     </div>
-  </NeoCardSurface>
+  </AuraCardSurface>
 </template>

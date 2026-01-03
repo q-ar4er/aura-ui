@@ -7,7 +7,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-defineOptions({ name: 'NeoFiltersPanel' })
+defineOptions({ name: 'AuraFiltersPanel' })
 
 const props = withDefaults(
   defineProps<{

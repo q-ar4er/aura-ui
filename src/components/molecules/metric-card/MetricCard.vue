@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import NeoCardSurface from '@/components/atoms/card/CardSurface.vue'
-import NeoDial from '@/components/atoms/dial/Dial.vue'
-import NeoKpiNumber from '@/components/atoms/kpi-number/KpiNumber.vue'
-import NeoProgressLinear from '@/components/atoms/progress/ProgressLinear.vue'
-import NeoChart from '@/components/atoms/chart/NeoChart.vue'
+import AuraCardSurface from '@/components/atoms/card/CardSurface.vue'
+import AuraDial from '@/components/atoms/dial/Dial.vue'
+import AuraKpiNumber from '@/components/atoms/kpi-number/KpiNumber.vue'
+import AuraProgressLinear from '@/components/atoms/progress/ProgressLinear.vue'
+import AuraChart from '@/components/atoms/chart/AuraChart.vue'
 
 import type { AuraEChartsOption } from '@/charts/theme'
 
@@ -40,15 +40,15 @@ const progressLabel = computed(() => {
 </script>
 
 <template>
-  <NeoCardSurface class="p-4">
+  <AuraCardSurface class="p-4">
     <div class="flex items-start justify-between gap-4">
       <div class="min-w-0">
         <div class="text-sm font-medium text-ink-muted">{{ title }}</div>
         <div v-if="subtitle" class="mt-0.5 text-xs text-ink-muted/80">{{ subtitle }}</div>
 
         <div class="mt-3 flex items-center gap-3">
-          <NeoKpiNumber :value="value" :unit="unit" :direction="direction" />
-          <NeoDial v-if="progress !== undefined" :value="progress" size="sm" />
+          <AuraKpiNumber :value="value" :unit="unit" :direction="direction" />
+          <AuraDial v-if="progress !== undefined" :value="progress" size="sm" />
         </div>
       </div>
 
@@ -57,12 +57,12 @@ const progressLabel = computed(() => {
           <span>Progress</span>
           <span>{{ progressLabel }}</span>
         </div>
-        <NeoProgressLinear class="mt-2" :value="progress" />
+        <AuraProgressLinear class="mt-2" :value="progress" />
       </div>
     </div>
 
     <div v-if="chartOption" class="mt-4">
-      <NeoChart :option="chartOption" :height="chartHeight" tone="muted" />
+      <AuraChart :option="chartOption" :height="chartHeight" tone="muted" />
     </div>
-  </NeoCardSurface>
+  </AuraCardSurface>
 </template>

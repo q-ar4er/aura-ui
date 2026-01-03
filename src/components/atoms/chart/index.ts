@@ -1,3 +1,1 @@
-export { default as AuraChart } from './NeoChart.vue'
-// Backward-compatible alias
-export { default as NeoChart } from './NeoChart.vue'
+export { default as AuraChart } from './AuraChart.vue'

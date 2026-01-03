@@ -1,5 +1,5 @@
 <template>
-  <NeoModal
+  <AuraModal
     :open="open"
     :variant="variant"
     :size="size"
@@ -70,14 +70,14 @@
         <slot name="footer" />
       </footer>
     </div>
-  </NeoModal>
+  </AuraModal>
 </template>
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import NeoModal from './NeoModal.vue'
+import AuraModal from './AuraModal.vue'
 
-defineOptions({ name: 'NeoDialog' })
+defineOptions({ name: 'AuraDialog' })
 
 type ModalVariant = 'dialog' | 'drawer-right'
 type ModalSize = 'sm' | 'md' | 'lg' | 'xl'

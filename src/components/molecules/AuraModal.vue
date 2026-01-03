@@ -51,7 +51,7 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue'
 
-defineOptions({ name: 'NeoModal' })
+defineOptions({ name: 'AuraModal' })
 
 type ModalVariant = 'dialog' | 'drawer-right'
 type ModalSize = 'sm' | 'md' | 'lg' | 'xl'

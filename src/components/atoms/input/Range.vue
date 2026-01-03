@@ -17,7 +17,7 @@
 import { computed, ref, type PropType } from 'vue'
 
 defineOptions({
-  name: 'NeoRange',
+  name: 'AuraRange',
   inheritAttrs: false,
 })
 

@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 
-import NeoBadge from '@/components/atoms/badge/Badge.vue'
-import NeoCardSurface from '@/components/atoms/card/CardSurface.vue'
-import NeoSegmentedControl from '@/components/atoms/segmented-control/SegmentedControl.vue'
+import AuraBadge from '@/components/atoms/badge/Badge.vue'
+import AuraCardSurface from '@/components/atoms/card/CardSurface.vue'
+import AuraSegmentedControl from '@/components/atoms/segmented-control/SegmentedControl.vue'
 import type { SegmentedOption } from '@/components/atoms/segmented-control/SegmentedControl.vue'
-import NeoChart from '@/components/atoms/chart/NeoChart.vue'
+import AuraChart from '@/components/atoms/chart/AuraChart.vue'
 import type { AuraEChartsOption } from '@/charts/theme'
 
 type Tone = 'default' | 'muted' | 'strong'
@@ -62,18 +62,18 @@ const onSegmentUpdate = (value: string) => {
 </script>
 
 <template>
-  <NeoCardSurface class="p-6" :tone="surfaceTone">
+  <AuraCardSurface class="p-6" :tone="surfaceTone">
     <div class="flex items-start justify-between gap-4">
       <div class="min-w-0">
         <div class="flex items-center gap-3">
           <h3 class="text-sm font-semibold">{{ title }}</h3>
-          <NeoBadge
+          <AuraBadge
             v-if="stat?.badge"
             :tone="stat.badge.tone ?? 'muted'"
             size="sm"
           >
             {{ stat.badge.label }}
-          </NeoBadge>
+          </AuraBadge>
         </div>
 
         <p v-if="subtitle" class="mt-1 text-xs text-muted">{{ subtitle }}</p>
@@ -87,7 +87,7 @@ const onSegmentUpdate = (value: string) => {
     </div>
 
     <div v-if="segments" class="mt-4">
-      <NeoSegmentedControl
+      <AuraSegmentedControl
         :options="segments.options"
         :model-value="segmentValue"
         @update:model-value="onSegmentUpdate"
@@ -95,12 +95,12 @@ const onSegmentUpdate = (value: string) => {
     </div>
 
     <div v-if="chart" class="mt-4">
-      <NeoChart
+      <AuraChart
         :option="chart.option"
         :height="chart.height ?? '220px'"
         :tone="chartTone"
         :aria-label="title"
       />
     </div>
-  </NeoCardSurface>
+  </AuraCardSurface>
 </template>

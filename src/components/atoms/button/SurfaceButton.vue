@@ -13,7 +13,7 @@
 
 <script lang="ts" setup>
 defineOptions({
-  name: 'NeoSurfaceButton',
+  name: 'AuraSurfaceButton',
 })
 
 import { computed, useAttrs } from 'vue'

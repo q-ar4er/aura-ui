@@ -1,5 +1,5 @@
 <template>
-  <NeoDialog
+  <AuraDialog
     :open="open"
     :size="size"
     :pretitle="pretitle"
@@ -24,13 +24,13 @@
     <template v-if="$slots.footer" #footer>
       <slot name="footer" />
     </template>
-  </NeoDialog>
+  </AuraDialog>
 </template>
 
 <script setup lang="ts">
 import { nextTick, onBeforeUnmount, ref, watch } from 'vue'
 
-import NeoDialog from '@/components/molecules/NeoDialog.vue'
+import AuraDialog from '@/components/molecules/AuraDialog.vue'
 
 defineOptions({ name: 'AuraBaseDialog' })
 
@@ -60,14 +60,14 @@ const props = withDefaults(
     focusSelector?: string
 
     /**
-     * Forwarded classes to NeoModal.
+     * Forwarded classes to AuraModal.
      */
     containerClass?: string
     overlayClass?: string
     panelClass?: string
 
     /**
-     * Forwarded to NeoDialog/NeoModal.
+     * Forwarded to AuraDialog/AuraModal.
      */
     autoFocus?: boolean
   }>(),
@@ -129,7 +129,7 @@ watch(
       return
     }
 
-    // Give NeoModal time to mount and then focus inside the dialog.
+    // Give AuraModal time to mount and then focus inside the dialog.
     focusTimer = window.setTimeout(() => {
       focusTimer = null
       void focusFirstField()

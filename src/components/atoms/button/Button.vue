@@ -46,7 +46,7 @@
 
 <script lang="ts" setup>
 defineOptions({
-  name: 'NeoButton',
+  name: 'AuraButton',
 })
 import { computed, useAttrs, type PropType } from 'vue'
 import { Motion } from '@motionone/vue'

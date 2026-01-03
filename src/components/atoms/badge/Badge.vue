@@ -6,7 +6,7 @@
 
 <script lang="ts" setup>
 defineOptions({
-  name: 'NeoBadge',
+  name: 'AuraBadge',
 })
 import { computed, type PropType } from 'vue'
 

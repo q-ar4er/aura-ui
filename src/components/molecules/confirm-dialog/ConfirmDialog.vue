@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import NeoDialog from '@/components/molecules/NeoDialog.vue'
-import NeoButton from '@/components/atoms/button/Button.vue'
+import AuraDialog from '@/components/molecules/AuraDialog.vue'
+import AuraButton from '@/components/atoms/button/Button.vue'
 
 const props = withDefaults(
   defineProps<{
@@ -35,15 +35,15 @@ const onConfirm = () => {
 </script>
 
 <template>
-  <NeoDialog :open="props.open" :title="props.title" @update:open="emit('update:open', $event)">
+  <AuraDialog :open="props.open" :title="props.title" @update:open="emit('update:open', $event)">
     <template #default>
       <p v-if="description" class="mt-2 text-sm text-[color:var(--muted)]">{{ description }}</p>
     </template>
     <template #footer>
       <div class="flex items-center justify-end gap-2">
-        <NeoButton variant="ghost" @click="onCancel">{{ cancelLabel }}</NeoButton>
-        <NeoButton :variant="destructive ? 'subtle' : 'primary'" @click="onConfirm">{{ confirmLabel }}</NeoButton>
+        <AuraButton variant="ghost" @click="onCancel">{{ cancelLabel }}</AuraButton>
+        <AuraButton :variant="destructive ? 'subtle' : 'primary'" @click="onConfirm">{{ confirmLabel }}</AuraButton>
       </div>
     </template>
-  </NeoDialog>
+  </AuraDialog>
 </template>

@@ -12,5 +12,5 @@
 </template>
 
 <script setup lang="ts">
-defineOptions({ name: 'NeoToolbar' })
+defineOptions({ name: 'AuraToolbar' })
 </script>

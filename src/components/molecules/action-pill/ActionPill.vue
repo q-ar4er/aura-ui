@@ -14,7 +14,7 @@
         <p class="text-sm font-semibold text-[color:var(--text)]">{{ label }}</p>
         <p class="text-xs text-[color:var(--muted)]/85">{{ description }}</p>
       </div>
-      <NeoProgressLinear v-if="progress !== undefined" :value="progress" />
+      <AuraProgressLinear v-if="progress !== undefined" :value="progress" />
     </div>
     <span
       class="pointer-events-none absolute inset-0 -z-[1] rounded-[var(--r-2xl)] opacity-0 transition-opacity duration-200 group-hover:opacity-100"
@@ -27,7 +27,7 @@
 import { computed, toRefs, useAttrs, type PropType } from 'vue'
 import { Motion } from '@motionone/vue'
 import { Icon, type IconifyIcon } from '@iconify/vue'
-import { NeoProgressLinear } from '@/components/atoms'
+import { AuraProgressLinear } from '@/components/atoms'
 const props = defineProps({
   icon: {
     type: [Object, String] as PropType<IconifyIcon | string>,

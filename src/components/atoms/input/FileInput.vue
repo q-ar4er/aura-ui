@@ -14,7 +14,7 @@
 import { ref } from 'vue'
 
 defineOptions({
-  name: 'NeoFileInput',
+  name: 'AuraFileInput',
   inheritAttrs: false,
 })
 
