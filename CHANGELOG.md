@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.1
+- Fix: make CSS entry generation robust for GitHub installs (`dist/style.css`).
+
+
 This changelog tracks **Aura UI package** releases.
 
 - Package version: `package.json#version`

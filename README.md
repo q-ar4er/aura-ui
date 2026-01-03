@@ -157,3 +157,7 @@ pnpm build
 ## Примечание про нейминг
 
 
+
+
+## Install from GitHub (no npm publish)
+See `docs/github-install.md`.
