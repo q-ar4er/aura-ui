@@ -1,0 +1,123 @@
+@import './fonts.css';
+@import './theme.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    min-height: 100%;
+    font-size: calc(16px * var(--font-scale));
+    font-family: var(--font-sans);
+    background-color: var(--bg);
+    color: var(--text);
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: var(--font-sans);
+    background-color: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  input,
+  textarea,
+  select {
+    color: theme('colors.field-text');
+    caret-color: theme('colors.field-caret');
+    transition: color 0.2s theme('transitionTimingFunction.glide'),
+      background-color 0.2s theme('transitionTimingFunction.glide'),
+      border-color 0.2s theme('transitionTimingFunction.glide'),
+      box-shadow 0.2s theme('transitionTimingFunction.glide');
+  }
+
+  input::placeholder,
+  textarea::placeholder,
+  select::placeholder {
+    color: theme('colors.field-muted');
+  }
+
+  input::selection,
+  textarea::selection,
+  select::selection {
+    background-color: theme('colors.field-selection');
+    color: theme('colors.field-selection-text');
+  }
+
+  input:disabled,
+  textarea:disabled,
+  select:disabled {
+    background-color: theme('colors.field.disabled');
+    color: theme('colors.field-muted');
+    cursor: not-allowed;
+  }
+
+  input:disabled::placeholder,
+  textarea:disabled::placeholder,
+  select:disabled::placeholder {
+    color: theme('colors.field-muted');
+  }
+
+  input:read-only,
+  textarea:read-only,
+  select:read-only {
+    background-color: theme('colors.field.focus');
+    color: theme('colors.field-text');
+    cursor: default;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:focus {
+    box-shadow: 0 0 0 1000px theme('colors.field.autofill') inset;
+    -webkit-text-fill-color: theme('colors.field-text');
+    transition: background-color 0s, color 0s;
+  }
+
+}
+
+@layer components {
+  .neo-surface {
+    border-radius: var(--radius-active);
+    box-shadow: var(--shadow-neo);
+    background: var(--panel);
+  }
+
+  .neo-surface--accent {
+    box-shadow: var(--shadow-neo-accent);
+    background-image: var(--gradient-accent);
+  }
+
+  .neo-ring {
+    box-shadow: var(--shadow-neo-inset);
+  }
+
+  .neo-field {
+    @apply w-full rounded-[var(--radius-active)] border border-field-border bg-field px-4 py-3 text-sm text-field-text placeholder:text-field-muted caret-field-caret shadow-neo-inset backdrop-blur-glass transition-colors duration-200 ease-glide selection:bg-field-selection selection:text-field-selection-text hover:bg-field-hover hover:border-field-border-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-field-ring focus-visible:ring-offset-2 focus-visible:ring-offset-panel focus-visible:bg-field-focus focus-visible:border-field-border-focus disabled:bg-field-disabled disabled:text-field-muted disabled:placeholder:text-field-muted disabled:shadow-none disabled:cursor-not-allowed read-only:bg-field-focus read-only:border-field-border;
+  }
+}

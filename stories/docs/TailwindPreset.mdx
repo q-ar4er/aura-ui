@@ -1,0 +1,45 @@
+import { Meta, Title, Subtitle } from '@storybook/addon-docs/blocks'
+
+<Meta title="Docs/Tailwind Preset" />
+
+<Title>Tailwind Preset</Title>
+<Subtitle>Use Aura-aligned utilities in consumer apps</Subtitle>
+
+If your product uses Tailwind, you can reuse Aura's theme extensions via the preset:
+
+- Export: `aura-ui/tailwind-preset`
+
+## Basic setup
+
+### JS config
+
+```js
+module.exports = {
+  presets: [require('aura-ui/tailwind-preset')],
+  content: ['./index.html', './src/**/*.{vue,ts,js,tsx,jsx}'],
+}
+```
+
+### TS config
+
+```ts
+import auraPreset from 'aura-ui/tailwind-preset'
+
+export default {
+  presets: [auraPreset],
+  content: ['./index.html', './src/**/*.{vue,ts,js,tsx,jsx}'],
+}
+```
+
+## Preflight note
+
+`aura-ui/style.css` already includes Tailwind preflight.
+If your app also includes it, you can disable preflight in the app:
+
+```ts
+export default {
+  presets: [auraPreset],
+  corePlugins: { preflight: false },
+  content: [...],
+}
+```

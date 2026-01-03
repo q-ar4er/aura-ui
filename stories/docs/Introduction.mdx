@@ -1,0 +1,40 @@
+import { Meta, Title, Subtitle, Description } from '@storybook/addon-docs/blocks'
+
+<Meta title="Docs/Introduction" />
+
+<Title>Aura UI</Title>
+<Subtitle>Glass / aura design system for Vue 3 products</Subtitle>
+
+<Description>
+Aura UI is a shared UI-kit (components + design tokens) intended to be reused across **independent products**,
+while keeping the UX/UI coherent across the ecosystem.
+</Description>
+
+## What you get
+
+- **Design tokens** (CSS variables): surfaces, colors, shadows, radius, blur, typography
+- **Global styles**: `aura-ui/style.css`
+- **Vue 3 components**: atoms + a few molecules
+- **Storybook** as the living documentation + visual regression baseline
+
+## Quick start (consumer app)
+
+```ts
+import 'aura-ui/style.css'
+```
+
+```vue
+<script setup lang="ts">
+import { AuraButton, AuraTextInput } from 'aura-ui'
+</script>
+
+<template>
+  <AuraTextInput label="Email" placeholder="name@example.com" />
+  <AuraButton>Continue</AuraButton>
+</template>
+```
+
+## Theme switching
+
+Use the toolbar at the top of Storybook to switch **Light/Dark**, radius and Aura shadows.
+In apps the same is done via `data-*` attributes on `<html>`.

@@ -1,186 +1,163 @@
-# Aura UI
+# Aura UI (`aura-ui`)
 
-UI-kit (design system) в стиле *glass/soft* для семейства независимых продуктов.
-Цель: единый визуальный язык, компоненты и токены, которые можно подключать в разные проекты без копипасты.
+UI-kit (Vue 3) в стиле **glass / aura**: дизайн‑токены, глобальные стили и набор компонентов.
 
-## Что внутри
-
-- UI-компоненты (atoms/molecules/organisms)
-- Design tokens (CSS variables): цвета, поверхности, тени, радиусы, blur
-- Готовые базовые стили (forms/surfaces/typography helpers)
-- Storybook-витрина для разработки и регресса
+- **Стили**: `aura-ui/style.css`
+- **Tailwind preset (опционально)**: `aura-ui/tailwind-preset`
+- **Версия токенов** (SemVer отдельно от пакета): см. `TOKENS.md`
 
 ---
 
-## Установка (без npm/организаций)
+## Установка в продукт (через GitHub, приватный репозиторий)
 
-Подключай как git dependency по **тегу** (semver), чтобы обновления были контролируемыми.
+Рекомендуемый способ — фиксировать **git tag** (semver), чтобы обновления были контролируемыми.
 
-### Вариант 1: SSH (рекомендуется)
-`package.json` в продукте:
-
-```json
-{
-  "dependencies": {
-    "aura-ui": "git+ssh://git@github.com:<YOUR_GITHUB_USERNAME>/aura-ui.git#v0.1.0"
-  }
-}
-````
-
-### Вариант 2: HTTPS
-
-```json
-{
-  "dependencies": {
-    "aura-ui": "git+https://github.com/<YOUR_GITHUB_USERNAME>/aura-ui.git#v0.1.0"
-  }
-}
-```
-
-После этого:
+### SSH
 
 ```bash
-npm i
-# или
-pnpm i
-# или
-yarn
+pnpm add git+ssh://git@github.com/<USER>/aura-ui.git#v0.1.0
 ```
 
-> Важно: всегда фиксируй версию через `#vX.Y.Z`, не используй `#main`.
+### HTTPS
+
+```bash
+pnpm add git+https://github.com/<USER>/aura-ui.git#v0.1.0
+```
+
+> В пакете включён `prepare` (сборка на install), поэтому `dist/` появится автоматически.
 
 ---
 
-## Подключение стилей
+## Использование
 
-Aura UI поставляет общий CSS-слой (токены + базовые классы).
-В точке входа приложения (например `main.ts`) подключи:
+### 1) Подключи стили один раз
+
+В entry-файле приложения (`main.ts`):
 
 ```ts
-import "aura-ui/styles.css";
+import 'aura-ui/style.css'
 ```
 
-Если твой проект использует Tailwind/другие стили — это не мешает. Токены будут доступны через CSS variables.
+### 2) Импортируй компоненты
+
+```vue
+<script setup lang="ts">
+import { AuraButton, AuraTextInput, AuraAlert } from 'aura-ui'
+</script>
+
+<template>
+  <AuraAlert title="Info">Hello</AuraAlert>
+  <AuraTextInput label="Email" placeholder="name@example.com" />
+  <AuraButton>Continue</AuraButton>
+</template>
+```
 
 ---
 
-## Темы (light / dark / auto)
+## Темы (dark / light / auto)
 
-Тема переключается через `data-theme` на `<html>`:
+Токены живут в `src/assets/theme.css`.
 
-* `light`
-* `dark`
-* `auto` (использует `prefers-color-scheme`)
-
-### Пример переключения
+Переключение темы — через `data-theme` на `<html>`:
 
 ```ts
-export type AuraTheme = "light" | "dark" | "auto";
+document.documentElement.dataset.theme = 'light' // или 'dark'
+```
 
-export function setAuraTheme(theme: AuraTheme) {
-  document.documentElement.dataset.theme = theme;
+Или через хелпер:
+
+```ts
+import { applyAuraTheme, persistAuraTheme, initAuraTheme } from 'aura-ui'
+
+applyAuraTheme('dark')
+persistAuraTheme('auto')
+initAuraTheme() // применит сохранённую тему или auto
+```
+
+Доп. переключатели:
+
+```ts
+document.documentElement.dataset.radius = '2xl'  // по умолчанию не задано
+document.documentElement.dataset.neo = 'false'   // чтобы убрать neo‑тени
+```
+
+---
+
+## Tailwind preset для потребителей (опционально)
+
+Если продукт сам использует Tailwind и ты хочешь, чтобы **утилиты соответствовали токенам Aura**, подключи preset.
+
+`tailwind.config.(js|cjs)`:
+
+```js
+module.exports = {
+  presets: [require('aura-ui/tailwind-preset')],
+  content: ['./index.html', './src/**/*.{vue,ts,js,tsx,jsx}'],
 }
 ```
 
-#### Типовой UX (рекомендуется)
-
-* По умолчанию: `auto`
-* Пользователь меняет в настройках → сохраняешь в localStorage/профиле
-* При старте приложения применяешь тему до рендера (чтобы не было “мигания”)
-
-Пример:
+`tailwind.config.ts`:
 
 ```ts
-const saved = (localStorage.getItem("theme") as "light" | "dark" | "auto") || "auto";
-document.documentElement.dataset.theme = saved;
+import auraPreset from 'aura-ui/tailwind-preset'
+
+export default {
+  presets: [auraPreset],
+  content: ['./index.html', './src/**/*.{vue,ts,js,tsx,jsx}'],
+}
+```
+
+### Важно про preflight
+
+`aura-ui/style.css` уже включает tailwind preflight, поэтому если твой продукт тоже его включает,
+можно избежать дубля, отключив preflight в продукте:
+
+```ts
+export default {
+  presets: [auraPreset],
+  corePlugins: { preflight: false },
+  content: [...],
+}
 ```
 
 ---
 
-## Использование компонентов
+## Версионирование токенов
 
-Импортируй компоненты из публичного entrypoint:
+- версия пакета: `package.json#version`
+- версия токенов: `package.json#aura.tokensVersion`
 
-```ts
-import { AuraButton, AuraInput } from "aura-ui";
-```
-
-> Примечание: если в проекте пока используются имена `Neo*` — можно оставить их внутри библиотеки как есть.
-> Главное — чтобы наружу экспортировался стабильный API. Позже переименуем без спешки (через алиасы/дедупликацию экспортов).
+Подробнее: `TOKENS.md` и `TOKENS_CHANGELOG.md`.
 
 ---
 
 ## Storybook
 
-### Запуск локально в UI-kit репозитории
-
 ```bash
-npm i
-npm run storybook
+pnpm storybook
 ```
 
-Обычно поднимается на:
-
-* `http://localhost:6006`
-
-### Сборка Storybook
-
-```bash
-npm run build-storybook
-```
+Docs‑страницы лежат в `stories/docs/*.mdx`.
 
 ---
 
-## Разработка
-
-### Команды (примерно)
+## Сборка пакета
 
 ```bash
-npm run lint
-npm run test
-npm run build
+pnpm build
 ```
 
-Если сборка библиотеки идёт через Vite/TS — проверь, что:
-
-* `styles.css` реально попадает в дистрибутив
-* публичные экспорты зафиксированы (чтобы продукты не импортировали “внутренности”)
+Артефакты:
+- `dist/index.js` — ESM entry
+- `dist/style.css` — готовые стили
+- `dist/index.d.ts` и остальные `*.d.ts` — типы
 
 ---
 
-## Версионирование и релизы
+## Примечание про нейминг
 
-Используем semver:
 
-* `PATCH` (`0.1.1`) — багфиксы, без изменения API
-* `MINOR` (`0.2.0`) — новые компоненты/опции, совместимо
-* `MAJOR` (`1.0.0`) — breaking changes (переименования экспортов/изменения контрактов)
 
-### Как выпускать релиз
 
-1. Обнови версию (если ведёшь её в `package.json`)
-2. Коммит
-3. Создай git tag:
-
-```bash
-git tag v0.1.0
-git push origin v0.1.0
-```
-
-После этого продукты могут перейти на новую версию, поменяв только `#v0.1.0` → `#v0.1.1`.
-
----
-
-## Рекомендации по интеграции в продукты
-
-* Не импортируй `aura-ui/src/...` напрямую. Только публичные экспорты.
-* Все строки (тексты) держи в приложении (i18n в продукте), UI-kit — через props/slots.
-* Любая доменная логика (api, stores, routing) — только в продукте, не в UI-kit.
-
----
-
-## Лицензия
-
-Private / internal use (по умолчанию).
-
-```
+## Install from GitHub (no npm publish)
+See `docs/github-install.md`.

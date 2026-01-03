@@ -1,0 +1,50 @@
+import { Meta, Title, Subtitle } from '@storybook/addon-docs/blocks'
+
+<Meta title="Docs/Theming" />
+
+<Title>Theming</Title>
+<Subtitle>Light / dark / runtime switches</Subtitle>
+
+Aura UI is token-driven: themes are just different values of the same CSS variables.
+
+## Theme modes
+
+- **Dark**: default (`:root`)
+- **Light**: `[data-theme="light"]`
+
+In apps you can switch theme like this:
+
+```ts
+document.documentElement.dataset.theme = 'light' // 'dark'
+```
+
+Or use helper:
+
+```ts
+import { applyAuraTheme, persistAuraTheme, initAuraTheme } from 'aura-ui'
+
+applyAuraTheme('auto')
+persistAuraTheme('dark')
+initAuraTheme()
+```
+
+## Runtime switches
+
+Aura ships a couple of optional runtime switches:
+
+### Radius
+
+- default: `xl`
+- bigger radius: `[data-radius="2xl"]`
+
+```ts
+document.documentElement.dataset.radius = '2xl'
+```
+
+### Aura shadows
+
+Turn off neomorphic shadows (useful for flatter UIs or performance):
+
+```ts
+document.documentElement.dataset.neo = 'false'
+```

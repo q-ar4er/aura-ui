@@ -1,0 +1,40 @@
+import { Meta, Title, Subtitle } from '@storybook/addon-docs/blocks'
+
+<Meta title="Docs/Tokens" />
+
+<Title>Design Tokens</Title>
+<Subtitle>SemVer, stability and customization</Subtitle>
+
+Tokens are CSS variables in `src/assets/theme.css`.
+
+## Tokens version
+
+Tokens have their **own SemVer** (independent from package version).
+
+Current tokens version: **0.1.0**
+
+You can also see it on `:root` as `--aura-tokens-version`.
+
+### Breaking changes (MAJOR)
+
+- removing a token
+- renaming a token
+- changing token meaning (semantic)
+
+### Minor / patch
+
+- MINOR: add new tokens
+- PATCH: value tweaks without meaning changes
+
+## Customization
+
+Override tokens in the consuming app:
+
+```css
+:root {
+  --accent: #5f9ff5;
+  --radius-active: 22px;
+}
+```
+
+Prefer semantic overrides (accent/radius/surfaces) rather than ad-hoc colors.

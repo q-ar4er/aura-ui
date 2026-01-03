@@ -1,0 +1,128 @@
+/*
+ * Aura Design Tokens
+ *
+ * Tokens version: 0.1.0
+ *
+ * Semver policy (high level):
+ * - PATCH: fix token values without changing meaning (bugfix)
+ * - MINOR: add new tokens (no removals/renames)
+ * - MAJOR: remove/rename/change meaning of existing tokens
+ *
+ * See: TOKENS.md and TOKENS_CHANGELOG.md
+ */
+
+:root {
+  color-scheme: dark;
+  /* Debug helper: visible in DevTools. */
+  --aura-tokens-version: '0.1.0';
+  --font-sans: 'InterVariable', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'ManropeVariable', 'Manrope', var(--font-sans);
+  --font-scale: 1.02;
+  --font-scale-lg: 1.12;
+
+  --r-xl: 24px;
+  --r-2xl: 32px;
+  --radius-active: var(--r-xl);
+
+  --blur: 18px;
+
+  --shadow-light: rgba(255, 255, 255, 0.14);
+  --shadow-dark: rgba(4, 6, 11, 0.6);
+  --shadow-glow: 0 0 30px rgba(95, 159, 245, 0.4);
+
+  --bg: #05070f;
+  --panel: #0b1120;
+  --text: #f8fbff;
+  --muted: rgba(203, 213, 225, 0.68);
+  --accent: #5f9ff5;
+  --accent-2: #8b5cf6;
+  --ring: rgba(95, 159, 245, 0.45);
+  --field-bg: rgba(16, 24, 40, 0.92);
+  --field-bg-hover: rgba(19, 29, 50, 0.95);
+  --field-bg-focus: rgba(24, 36, 64, 0.98);
+  --field-bg-disabled: rgba(14, 22, 38, 0.72);
+  --field-bg-autofill: rgba(95, 159, 245, 0.14);
+  --field-border: rgba(148, 163, 184, 0.28);
+  --field-border-hover: rgba(148, 163, 184, 0.36);
+  --field-border-focus: rgba(95, 159, 245, 0.55);
+  --field-text: var(--text);
+  --field-muted: rgba(203, 213, 225, 0.68);
+  --field-ring: rgba(95, 159, 245, 0.5);
+  --field-caret: var(--accent);
+  --field-selection: rgba(95, 159, 245, 0.32);
+  --field-selection-text: #04060b;
+  --gradient-accent: linear-gradient(135deg, #5f9ff5 0%, #8b5cf6 100%);
+  --gradient-accent-soft: linear-gradient(135deg, rgba(95, 159, 245, 0.32) 0%, rgba(139, 92, 246, 0.28) 100%);
+  --shadow-neo: -18px -18px 36px rgba(22, 32, 55, 0.45), 18px 18px 36px rgba(2, 4, 9, 0.9);
+  --shadow-neo-inset: inset -12px -12px 32px rgba(22, 32, 55, 0.5), inset 12px 12px 32px rgba(2, 4, 9, 0.92);
+  --shadow-neo-accent: -10px -10px 28px rgba(95, 159, 245, 0.38), 10px 10px 28px rgba(5, 7, 15, 0.55);
+}
+
+[data-theme='light'] {
+  color-scheme: light;
+  --bg: #f6f8ff;
+  --panel: #ffffff;
+  --text: #0f172a;
+  --muted: rgba(71, 85, 105, 0.7);
+  --accent: #5163ff;
+  --accent-2: #35bde1;
+  --ring: rgba(81, 99, 255, 0.4);
+  --field-bg: #ffffff;
+  --field-bg-hover: #f6f8ff;
+  --field-bg-focus: #f2f6ff;
+  --field-bg-disabled: #f1f5f9;
+  --field-bg-autofill: rgba(81, 99, 255, 0.12);
+  --field-border: rgba(148, 163, 184, 0.35);
+  --field-border-hover: rgba(81, 99, 255, 0.28);
+  --field-border-focus: rgba(81, 99, 255, 0.45);
+  --field-text: #0f172a;
+  --field-muted: rgba(71, 85, 105, 0.65);
+  --field-ring: rgba(81, 99, 255, 0.4);
+  --field-caret: #5163ff;
+  --field-selection: rgba(81, 99, 255, 0.18);
+  --field-selection-text: #0f172a;
+  --gradient-accent: linear-gradient(135deg, #5163ff 0%, #35bde1 100%);
+  --gradient-accent-soft: linear-gradient(135deg, rgba(81, 99, 255, 0.24) 0%, rgba(53, 189, 225, 0.2) 100%);
+  --shadow-light: rgba(255, 255, 255, 0.9);
+  --shadow-dark: rgba(163, 177, 198, 0.55);
+  --shadow-glow: 0 0 28px rgba(81, 99, 255, 0.35);
+  --shadow-neo: -14px -14px 28px rgba(255, 255, 255, 0.9), 14px 14px 28px rgba(163, 177, 198, 0.6);
+  --shadow-neo-inset: inset -10px -10px 24px rgba(255, 255, 255, 0.85), inset 10px 10px 24px rgba(163, 177, 198, 0.6);
+  --shadow-neo-accent: -8px -8px 22px rgba(81, 99, 255, 0.35), 8px 8px 22px rgba(53, 189, 225, 0.25);
+}
+
+[data-radius='2xl'] {
+  --radius-active: var(--r-2xl);
+}
+
+[data-neo='false'] {
+  --shadow-neo: none;
+  --shadow-neo-inset: none;
+  --shadow-neo-accent: none;
+  --shadow-glow: none;
+}
+
+:root,
+[data-theme] {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+.font-display {
+  font-family: var(--font-display);
+  font-variation-settings: 'wght' 640;
+  letter-spacing: -0.01em;
+  text-rendering: optimizeLegibility;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --font-scale: 1.06;
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --font-scale: var(--font-scale-lg);
+  }
+}
