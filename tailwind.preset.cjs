@@ -1,83 +1,54 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
-const optionalRequire = (name) => {
-  try {
-    return require(name)
-  } catch (_e) {
-    return null
-  }
-}
-
-const forms = optionalRequire('@tailwindcss/forms')
-const typography = optionalRequire('@tailwindcss/typography')
-
 /**
  * Aura Tailwind Preset
  *
- * Purpose
- * - Give consumer apps the same Tailwind “design primitives” as Aura UI,
- *   backed by Aura CSS variables.
- *
- * What it does
- * - Provides color/radius/shadow/blur/typography extensions.
- * - Enables dark mode via class + data attribute.
- * - Adds the same Tailwind plugins (forms/typography) Aura uses.
- *
- * What it intentionally does NOT do
- * - It does NOT define `content` (each app must set its own scanning paths).
+ * IMPORTANT:
+ * This file is executed in the consumer project's Node process (Tailwind config load).
+ * So it MUST NOT throw if optional plugins are not installed.
  */
 
-/** @type {import('tailwindcss').Config} */
+function loadPlugin(name) {
+  try {
+    // CJS require - may return a function or { default: fn } depending on package/interop
+    const mod = require(name)
+    if (mod && typeof mod === 'object' && 'default' in mod) return mod.default
+    return mod
+  } catch (_e) {
+    return undefined
+  }
+}
+
+const forms = loadPlugin('@tailwindcss/forms')
+const typography = loadPlugin('@tailwindcss/typography')
+
 module.exports = {
   darkMode: ['class', '[data-theme="dark"]'],
   theme: {
     extend: {
       colors: {
+        // CSS variables exposed by Aura styles
         bg: 'var(--bg)',
-        panel: 'var(--panel)',
-        text: 'var(--text)',
+        fg: 'var(--fg)',
         muted: 'var(--muted)',
-        ring: 'var(--ring)',
-        accent: {
-          DEFAULT: 'var(--accent)',
-          2: 'var(--accent-2)',
-        },
-        field: {
-          DEFAULT: 'var(--field-bg)',
-          hover: 'var(--field-bg-hover)',
-          focus: 'var(--field-bg-focus)',
-          disabled: 'var(--field-bg-disabled)',
-          autofill: 'var(--field-bg-autofill)',
-        },
-        'field-border': {
-          DEFAULT: 'var(--field-border)',
-          hover: 'var(--field-border-hover)',
-          focus: 'var(--field-border-focus)',
-        },
-        'field-text': 'var(--field-text)',
-        'field-muted': 'var(--field-muted)',
-        'field-ring': 'var(--field-ring)',
-        'field-caret': 'var(--field-caret)',
-        'field-selection': 'var(--field-selection)',
-        'field-selection-text': 'var(--field-selection-text)',
+        border: 'var(--border)',
+        accent: 'var(--accent)',
+        'accent-2': 'var(--accent-2)',
+        danger: 'var(--danger)',
+        warning: 'var(--warning)',
+        success: 'var(--success)',
       },
       borderRadius: {
-        xl: 'var(--r-xl)',
-        '2xl': 'var(--r-2xl)',
-        pill: '9999px',
-      },
-      fontFamily: {
-        sans: ['var(--font-sans)', 'sans-serif'],
-        display: ['var(--font-display)', 'sans-serif'],
+        sm: 'var(--radius-sm)',
+        md: 'var(--radius-md)',
+        lg: 'var(--radius-lg)',
+        xl: 'var(--radius-xl)',
+        '2xl': 'var(--radius-2xl)',
       },
       boxShadow: {
-        aura: 'var(--shadow-neo)',
-        'aura-inset': 'var(--shadow-neo-inset)',
-        'aura-ring': '0 0 0 1px var(--ring), var(--shadow-neo)',
-        'aura-accent': 'var(--shadow-neo-accent)',
-      },
-      dropShadow: {
-        glow: 'var(--shadow-glow)',
+        soft: 'var(--shadow-soft)',
+        card: 'var(--shadow-card)',
+        pop: 'var(--shadow-pop)',
       },
       backgroundImage: {
         accent: 'var(--gradient-accent)',
@@ -91,5 +62,6 @@ module.exports = {
       },
     },
   },
-  plugins: [forms, typography],
+  // Tailwind crashes if plugins array contains null/undefined, so filter them out
+  plugins: [forms, typography].filter(Boolean),
 }
