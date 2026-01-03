@@ -1,7 +1,15 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
-const forms = require('@tailwindcss/forms')
-const typography = require('@tailwindcss/typography')
+const optionalRequire = (name) => {
+  try {
+    return require(name)
+  } catch (_e) {
+    return null
+  }
+}
+
+const forms = optionalRequire('@tailwindcss/forms')
+const typography = optionalRequire('@tailwindcss/typography')
 
 /**
  * Aura Tailwind Preset
